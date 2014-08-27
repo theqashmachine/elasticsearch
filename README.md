@@ -10,7 +10,7 @@ This directory will be kept in sync with changes with your `repo directory`, so 
 
 To run Elasticsearch in the vagrant box, type `sudo /etc/init.d/elasticsearch start`.
 
-Test your setup by navigating to `http://localhost:9220/?pretty` where you should get somethinglike this
+Test your setup by navigating [here](http://localhost:9220/?pretty) where you should get something like this
 ```
 {
   "status" : 200,
