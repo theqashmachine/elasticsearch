@@ -143,7 +143,7 @@ node.name: "Qash Machine"
 # Path to directory containing configuration (this file and logging.yml):
 #
 #path.conf: /path/to/conf
-path.conf: /home/vagrant/elasticsearch/config/elasticsearch
+path.conf: /vagrant/config/elasticsearch
 
 # Path to directory where to store index data allocated for this node.
 #

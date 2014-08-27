@@ -41,7 +41,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder ".", "/home/vagrant/elasticsearch"
+  # config.vm.synced_folder ".", "/home/vagrant/elasticsearch"
 
   config.vm.provision "shell", path: "./vagrantProvision/provision.sh"
   config.vm.provision "shell", path: "./vagrantProvision/javasetup.sh"
