@@ -10,4 +10,20 @@ This directory will be kept in sync with changes with your `repo directory`, so 
 
 To run Elasticsearch in the vagrant box, type `sudo /etc/init.d/elasticsearch start`.
 
+Test your setup by navigating to `http://localhost:9220/?pretty` where you should get somethinglike this
+```
+{
+  "status" : 200,
+  "name" : "Qash Machine",
+  "version" : {
+    "number" : "1.3.2",
+    "build_hash" : "dee175dbe2f254f3f26992f5d7591939aaefd12f",
+    "build_timestamp" : "2014-08-13T14:29:30Z",
+    "build_snapshot" : false,
+    "lucene_version" : "4.9"
+  },
+  "tagline" : "You Know, for Search"
+}
+```
 
+Note the port number being used is **9220**

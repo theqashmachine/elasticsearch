@@ -7,4 +7,14 @@ apt-get update
 
 apt-get install elasticsearch -y
 
+cp -fv /home/vagrant/elasticsearch/config/elasticsearch.cfg /etc/default/elasticsearch
+
+# set elasticsearch to run on start up
+update-rc.d elasticsearch defaults 95 10
+
+# Start elasticsearch
+/etc/init.d/elasticsearch start
+
 echo 'Elastic Search set up complete'
+
+echo 'Verify setup by navigating to http://localhost:9220/?pretty'
