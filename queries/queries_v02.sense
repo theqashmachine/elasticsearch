@@ -1,0 +1,217 @@
+GET /opendata/chargedevices/_search
+{
+    "query": {
+        "match_all": {}
+        }
+    }
+}
+
+
+GET /opendata/chargedevices/_search
+{
+    "fields": [
+        "ChargeDeviceRef"
+       ,"ChargeDeviceLocation.Latitude"
+       ,"ChargeDeviceLocation.Longitude"
+    ], 
+    "query": {
+        "wildcard": {
+            "PostTown": "*an*"
+        }
+    }
+}
+
+GET /opendata/chargedevices/_search
+{ 
+    "query": {
+        "wildcard": {
+            "PostTown": "*an*"
+        }
+    }
+}
+
+GET /open_data/charge_device/_search
+{
+    "query": {
+        "match_all": {}
+        }
+    }
+}
+
+PUT /open_data/search_area/test_area_001
+{
+    "reference": "test_area_001",
+    "location": {
+        "type": "polygon",
+        "coordinates": [
+          [
+            [
+              -3.2904052734374996,
+              54.584796743678716
+            ],
+            [
+              -3.4771728515625,
+              54.33894653462054
+            ],
+            [
+              -3.09814453125,
+              53.849286246347326
+            ],
+            [
+              -3.2135009765625,
+              53.37677497506021
+            ],
+            [
+              -2.5653076171875,
+              52.925463079438416
+            ],
+            [
+              -1.4501953125,
+              52.9883372533954
+            ],
+            [
+              -1.2579345703125,
+              53.48804553605622
+            ],
+            [
+              -2.098388671875,
+              54.39015388401023
+            ],
+            [
+              -2.735595703125,
+              54.85763959554899
+            ],
+            [
+              -3.2904052734374996,
+              54.584796743678716
+            ]
+          ]
+        ]
+      }
+}
+
+GET /open_data/search_area/_search
+{
+    "query": {
+        "match_all": {}
+        }
+    }
+}
+
+GET /open_data/charge_device/_search
+{ 
+    "query": {
+        "wildcard": {
+            "ChargeDeviceRef": "60228"
+        }
+    }
+}
+
+DELETE /open_data/search_area
+
+GET /open_data/_mapping/charge_device
+
+GET /open_data/_mapping/search_area
+
+PUT /open_data/_mapping/search_area
+{
+    "search_area": {
+            "properties": {
+               "location": {
+                  "type": "geo_shape"
+               },
+               "reference": {
+                  "type": "string"
+               }
+            }
+         }
+}
+
+PUT /open_data/_mapping/charge_device
+{
+   "charge_device": {
+        "properties": {
+            "ChargeDeviceRef": {
+                "type": "string"
+            },
+            "location": {
+                "type": "geo_point",
+                    "store": "yes"
+            }
+        }
+    }
+}
+
+GET /open_data/search_area/_search
+{
+    "query": {
+        "filtered": {
+            "filter": {
+                "geo_distance": {
+                    "location": {
+                        "lat": 53.4815082,
+                        "lon": -2.2412109375
+                    },
+                    "distance": "200km",
+                    "optimize_bbox": "memory"
+                }
+            },
+            "query": {
+                "match_all": {}
+            }
+        }
+    }
+}
+
+GET /open_data/_search
+{
+    "filtered": {
+        "query": {
+            "match_all": {}
+        },
+        "filter": {
+            "geo_shape": {
+                "location": {
+                    "indexed_shape": {
+                        "id": "test_area_001",
+                        "type": "search_area",
+                        "index": "open_data",
+                        "path": "location"
+                    }
+                }
+            }
+        }
+    }
+}
+
+GET /open_data/_search
+{
+    “query” : {
+        “geo_shape” : {
+            “location” : {
+                “shape” : {
+                    “type” : “envelope”,
+                    “coordinates” : [[-45.0, 45.0], [45.0, -45.0]]
+                }
+                “relation” : “contains”
+            }
+        }
+    }
+}
+
+GET /open_data/_search
+{
+    "query": {
+        "geo_shape": {
+           "location": {
+                "shape": {
+                    "type": "envelope",
+                    "coordinates": [[-45.0, 45.0], [45.0, -45.0]]
+                }
+           },
+           "relation": "within"
+        }
+    }
+}
+
+DELETE /open_data/charge_device
